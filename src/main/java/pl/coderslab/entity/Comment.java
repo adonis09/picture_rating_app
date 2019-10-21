@@ -17,7 +17,8 @@ public class Comment {
 
     private Integer flags;
 
-    private Long pictureId;
+    @ManyToOne
+    private Picture picture;
 
     private Long parentCommentId;
 
@@ -61,12 +62,12 @@ public class Comment {
         this.flags = flags;
     }
 
-    public Long getPictureId() {
-        return pictureId;
+    public Picture getPicture() {
+        return picture;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 
     public Long getParentCommentId() {

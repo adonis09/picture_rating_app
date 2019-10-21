@@ -38,6 +38,9 @@ public class Picture {
     @OneToMany(mappedBy = "picture")
     private List<Mark> marks = new ArrayList<>();
 
+    @OneToMany(mappedBy = "picture")
+    private List<Comment> comments = new ArrayList<>();
+
     public Picture() {
     }
 
@@ -95,5 +98,13 @@ public class Picture {
 
     public void setMarks(List<Mark> marks) {
         this.marks = marks;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

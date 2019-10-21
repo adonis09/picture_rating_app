@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.CommentDao;
+import pl.coderslab.dao.PictureDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.entity.Comment;
+import pl.coderslab.entity.Picture;
 
 @RequestMapping("/comment")
 @Controller
@@ -17,17 +19,19 @@ public class CommentController {
     private CommentDao commentDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private PictureDao pictureDao;
 
     @RequestMapping("/add")
     @ResponseBody
     public String addComment() {
         Comment comment = new Comment();
-        comment.setContent("awww such beautiful pic");
-        comment.setUser(userDao.findById(9L));
-        comment.setPictureId(3L);
+        comment.setContent("quite nice picture");
+        comment.setUser(userDao.findById(6L));
+        comment.setPicture(pictureDao.findById(1L));
         commentDao.saveComment(comment);
         return "Added comment:<br>" + comment.getId() + " | " + comment.getContent() + " | " +
-                comment.getUser().getName() + " | " + comment.getPictureId();
+                comment.getUser().getName() + " | " + comment.getPicture().getFileName();
     }
 
     @RequestMapping("/find/{id}")
