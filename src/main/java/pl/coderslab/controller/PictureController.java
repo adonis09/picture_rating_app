@@ -20,7 +20,7 @@ public class PictureController {
     public String addPicture() {
         Picture picture = new Picture();
         picture.setFileName("someFileName.jpg");
-        picture.setUser_id(3L);
+        picture.setUserId(3L);
         pictureDao.savePicture(picture);
         return "Added picture:<br>" + picture.getId() + " | " + picture.getFileName();
     }
@@ -40,10 +40,10 @@ public class PictureController {
 
         Picture picture = pictureDao.findById(id);
         picture.setFileName("updatedFilName.png");
-        picture.setUser_id(1L);
+        picture.setUserId(1L);
         pictureDao.update(picture);
 
-        return "Picture got updated:<br>" + picture.getId() + " | " + picture.getFileName() + " | " + picture.getUser_id();
+        return "Picture got updated:<br>" + picture.getId() + " | " + picture.getFileName() + " | " + picture.getUserId();
     }
 
     @RequestMapping("/delete/{id}")

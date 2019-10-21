@@ -38,7 +38,7 @@ public class CommentController {
 
         Comment comment = commentDao.findById(id);
         comment.setContent("updatedCommentContent");
-        comment.setUser_id(2L);
+        comment.setUserId(2L);
         commentDao.update(comment);
 
         return "Comment got updated:<br>" + comment.getId() + " | " + comment.getContent();

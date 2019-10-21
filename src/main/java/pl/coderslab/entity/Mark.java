@@ -12,9 +12,9 @@ public class Mark {
 
     private Integer score;
 
-    private Long user_id;
+    private Long userId;
 
-    private Long picture_id;
+    private Long pictureId;
 
     public Mark() {
     }
@@ -35,19 +35,19 @@ public class Mark {
         this.score = score;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getPicture_id() {
-        return picture_id;
+    public Long getPictureId() {
+        return pictureId;
     }
 
-    public void setPicture_id(Long picture_id) {
-        this.picture_id = picture_id;
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
     }
 }

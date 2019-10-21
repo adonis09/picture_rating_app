@@ -17,11 +17,11 @@ public class Comment {
 
     private Integer flags;
 
-    private Long user_id;
+    private Long userId;
 
-    private Long picture_id;
+    private Long pictureId;
 
-    private Long parent_comment_id;
+    private Long parentCommentId;
 
     @PrePersist
     public void prePersist() {
@@ -60,28 +60,28 @@ public class Comment {
         this.flags = flags;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getPicture_id() {
-        return picture_id;
+    public Long getPictureId() {
+        return pictureId;
     }
 
-    public void setPicture_id(Long picture_id) {
-        this.picture_id = picture_id;
+    public void setPictureId(Long pictureId) {
+        this.pictureId = pictureId;
     }
 
-    public Long getParent_comment_id() {
-        return parent_comment_id;
+    public Long getParentCommentId() {
+        return parentCommentId;
     }
 
-    public void setParent_comment_id(Long parent_comment_id) {
-        this.parent_comment_id = parent_comment_id;
+    public void setParentCommentId(Long parentCommentId) {
+        this.parentCommentId = parentCommentId;
     }
 }
 
