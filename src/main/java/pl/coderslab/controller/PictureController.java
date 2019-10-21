@@ -20,7 +20,7 @@ public class PictureController {
     public String addPicture() {
         Picture picture = new Picture();
         picture.setFileName("someFileName.jpg");
-        picture.setUser_id(3);
+        picture.setUser_id(3L);
         pictureDao.savePicture(picture);
         return "Added picture:<br>" + picture.getId() + " | " + picture.getFileName();
     }

@@ -21,7 +21,7 @@ public class Picture {
     private int valid;
 
     @Column(nullable = false)
-    private int user_id;
+    private Long user_id;
 
     @PrePersist
     public void prePersist() {
@@ -76,11 +76,11 @@ public class Picture {
         this.valid = valid;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 }
