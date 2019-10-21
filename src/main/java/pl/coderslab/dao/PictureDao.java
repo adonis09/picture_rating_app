@@ -6,6 +6,8 @@ import pl.coderslab.entity.Picture;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -28,6 +30,12 @@ public class PictureDao {
     public void delete(Picture entity) {
         entityManager.remove(entityManager.contains(entity) ?
                 entity : entityManager.merge(entity));
+    }
+
+    public List<Picture> findAll(){
+        Query query = entityManager.createQuery("SELECT p FROM Picture p");
+        List<Picture> pictures = query.getResultList();
+        return pictures;
     }
 
 }
