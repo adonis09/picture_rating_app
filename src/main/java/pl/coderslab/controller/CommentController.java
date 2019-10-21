@@ -34,6 +34,20 @@ public class CommentController {
                 comment.getUser().getName() + " | " + comment.getPicture().getFileName();
     }
 
+    @RequestMapping("/addChildTo/{parentId}")
+    @ResponseBody
+    public String addChildComment(@PathVariable("parentId") long parentId) {
+        Comment comment = new Comment();
+        comment.setParentComment(commentDao.findById(parentId));
+        comment.setContent("quite nice indeed!");
+        comment.setUser(userDao.findById(4L));
+        comment.setPicture(pictureDao.findById(1L));
+        commentDao.saveComment(comment);
+        return "Added comment:<br>" + "parrent comment: " + comment.getParentComment().getId() + " | " + comment.getParentComment().getContent() + " | by: " +comment.getParentComment().getUser().getName() +
+                "<br><blockquote>child comment: " + comment.getId() + " | " + comment.getContent() + " | " + comment.getUser().getName() +
+                "<br>picture: " + comment.getPicture().getFileName();
+    }
+
     @RequestMapping("/find/{id}")
     @ResponseBody
     public String findComment(@PathVariable("id") long id) {

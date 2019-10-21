@@ -2,6 +2,8 @@ package pl.coderslab.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "comment")
@@ -20,7 +22,12 @@ public class Comment {
     @ManyToOne
     private Picture picture;
 
-    private Long parentCommentId;
+    @ManyToOne
+    @JoinColumn(name = "parent_comment_id")
+    private Comment parentComment;
+
+    @OneToMany(mappedBy = "parentComment")
+    private List<Comment> childComments = new ArrayList<>();
 
     @ManyToOne
     private User user;
@@ -70,12 +77,20 @@ public class Comment {
         this.picture = picture;
     }
 
-    public Long getParentCommentId() {
-        return parentCommentId;
+    public Comment getParentComment() {
+        return parentComment;
     }
 
-    public void setParentCommentId(Long parentCommentId) {
-        this.parentCommentId = parentCommentId;
+    public void setParentComment(Comment parentComment) {
+        this.parentComment = parentComment;
+    }
+
+    public List<Comment> getChildComments() {
+        return childComments;
+    }
+
+    public void setChildComments(List<Comment> childComments) {
+        this.childComments = childComments;
     }
 
     public User getUser() {
