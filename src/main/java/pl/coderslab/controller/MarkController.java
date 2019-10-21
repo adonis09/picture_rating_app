@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.MarkDao;
+import pl.coderslab.dao.PictureDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.entity.Mark;
 
@@ -15,19 +16,20 @@ public class MarkController {
 
     @Autowired
     private MarkDao markDao;
-
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private PictureDao pictureDao;
 
     @RequestMapping("/add")
     @ResponseBody
     public String addMark() {
         Mark mark = new Mark();
-        mark.setPictureId(3L);
-        mark.setScore(3);
-        mark.setUser(userDao.findById(4L));
+        mark.setPicture(pictureDao.findById(4L));
+        mark.setScore(8);
+        mark.setUser(userDao.findById(7L));
         markDao.saveMark(mark);
-        return "Added mark:<br>" + mark.getId() + " | " + mark.getUser().getName() + " | " + mark.getScore() + " | " + mark.getPictureId();
+        return "Added mark:<br>" + mark.getId() + " | " + mark.getUser().getName() + " | " + mark.getScore() + " | " + mark.getPicture().getFileName();
     }
 
     @RequestMapping("/find/{id}")

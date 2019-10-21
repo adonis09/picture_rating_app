@@ -16,7 +16,8 @@ public class Mark {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private Long pictureId;
+    @ManyToOne
+    private Picture picture;
 
     public Mark() {
     }
@@ -45,11 +46,11 @@ public class Mark {
         this.user = user;
     }
 
-    public Long getPictureId() {
-        return pictureId;
+    public Picture getPicture() {
+        return picture;
     }
 
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 }

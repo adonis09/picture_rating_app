@@ -2,6 +2,8 @@ package pl.coderslab.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "picture")
@@ -32,6 +34,9 @@ public class Picture {
     public void preUpdate() {
         approved = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "picture")
+    private List<Mark> marks = new ArrayList<>();
 
     public Picture() {
     }
@@ -82,5 +87,13 @@ public class Picture {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(List<Mark> marks) {
+        this.marks = marks;
     }
 }
