@@ -19,9 +19,9 @@ public class UserController {
     @ResponseBody
     public String addUser() {
         User user = new User();
-        user.setName("newUserName");
-        user.setEmail("newUser@ema.il");
-        user.setPassword("newPass");
+        user.setName("newerUserName");
+        user.setEmail("newerUser@ema.il");
+        user.setPassword("newerPass");
         user.setAdmin(0);
         user.setActive(1);
         userDao.saveUser(user);

@@ -20,8 +20,8 @@ public class Picture {
 
     private int valid;
 
-    @Column(nullable = false)
-    private Long userId;
+    @ManyToOne
+    private User user;
 
     @PrePersist
     public void prePersist() {
@@ -76,11 +76,11 @@ public class Picture {
         this.valid = valid;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,6 +1,8 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -19,6 +21,9 @@ public class User {
     private int admin;
 
     private int active;
+
+    @OneToMany(mappedBy = "user")
+    private List<Picture> pictures = new ArrayList<>();
 
     public User() {
     }
@@ -69,5 +74,13 @@ public class User {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 }
