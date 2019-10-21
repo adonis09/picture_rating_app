@@ -1,6 +1,8 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tag")
@@ -12,6 +14,12 @@ public class Tag {
 
     @Column(unique = true)
     private String title;
+
+    @ManyToMany
+    @JoinTable(name = "picture_tag",
+    joinColumns = @JoinColumn(name = "picture_id"),
+    inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Picture> pictures = new ArrayList<>();
 
     public Tag() {
     }
@@ -30,5 +38,13 @@ public class Tag {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 }

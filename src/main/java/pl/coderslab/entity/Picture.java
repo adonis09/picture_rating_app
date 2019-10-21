@@ -41,6 +41,9 @@ public class Picture {
     @OneToMany(mappedBy = "picture")
     private List<Comment> comments = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "pictures")
+    private List<Tag> tags = new ArrayList<>();
+
     public Picture() {
     }
 
