@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.CommentDao;
+import pl.coderslab.dao.UserDao;
 import pl.coderslab.entity.Comment;
 
 @RequestMapping("/comment")
@@ -14,14 +15,19 @@ public class CommentController {
 
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping("/add")
     @ResponseBody
     public String addComment() {
         Comment comment = new Comment();
-        comment.setContent("another new comment");
+        comment.setContent("awww such beautiful pic");
+        comment.setUser(userDao.findById(9L));
+        comment.setPictureId(3L);
         commentDao.saveComment(comment);
-        return "Added comment:<br>" + comment.getId() + " | " + comment.getContent();
+        return "Added comment:<br>" + comment.getId() + " | " + comment.getContent() + " | " +
+                comment.getUser().getName() + " | " + comment.getPictureId();
     }
 
     @RequestMapping("/find/{id}")
@@ -38,7 +44,7 @@ public class CommentController {
 
         Comment comment = commentDao.findById(id);
         comment.setContent("updatedCommentContent");
-        comment.setUserId(2L);
+        comment.setUser(userDao.findById(2L));
         commentDao.update(comment);
 
         return "Comment got updated:<br>" + comment.getId() + " | " + comment.getContent();

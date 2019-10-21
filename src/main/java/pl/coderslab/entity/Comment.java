@@ -17,11 +17,12 @@ public class Comment {
 
     private Integer flags;
 
-    private Long userId;
-
     private Long pictureId;
 
     private Long parentCommentId;
+
+    @ManyToOne
+    private User user;
 
     @PrePersist
     public void prePersist() {
@@ -60,14 +61,6 @@ public class Comment {
         this.flags = flags;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getPictureId() {
         return pictureId;
     }
@@ -82,6 +75,14 @@ public class Comment {
 
     public void setParentCommentId(Long parentCommentId) {
         this.parentCommentId = parentCommentId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

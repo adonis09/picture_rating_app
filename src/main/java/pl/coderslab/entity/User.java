@@ -25,6 +25,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Picture> pictures = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
+
     public User() {
     }
 
@@ -82,5 +85,13 @@ public class User {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
