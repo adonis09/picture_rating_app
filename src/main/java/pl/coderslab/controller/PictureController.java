@@ -40,8 +40,7 @@ public class PictureController {
 
         Picture picture = pictureDao.findById(id);
         picture.setFileName("updatedFilName.png");
-        picture.setUser_id(1);
-
+        picture.setUser_id(1L);
         pictureDao.update(picture);
 
         return "Picture got updated:<br>" + picture.getId() + " | " + picture.getFileName() + " | " + picture.getUser_id();
