@@ -9,7 +9,8 @@ import pl.coderslab.dao.CommentDao;
 import pl.coderslab.dao.PictureDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.entity.Comment;
-import pl.coderslab.entity.Picture;
+
+import java.util.List;
 
 @RequestMapping("/comment")
 @Controller
@@ -30,8 +31,7 @@ public class CommentController {
         comment.setUser(userDao.findById(6L));
         comment.setPicture(pictureDao.findById(1L));
         commentDao.saveComment(comment);
-        return "Added comment:<br>" + comment.getId() + " | " + comment.getContent() + " | " +
-                comment.getUser().getName() + " | " + comment.getPicture().getFileName();
+        return "Added comment:<br>" + comment;
     }
 
     @RequestMapping("/addChildTo/{parentId}")
@@ -65,7 +65,7 @@ public class CommentController {
         comment.setUser(userDao.findById(2L));
         commentDao.update(comment);
 
-        return "Comment got updated:<br>" + comment.getId() + " | " + comment.getContent();
+        return "Comment got updated:<br>" + comment;
     }
 
     @RequestMapping("/delete/{id}")
@@ -75,7 +75,59 @@ public class CommentController {
         Comment comment = commentDao.findById(id);
         commentDao.delete(comment);
 
-        return "Deleted comment having id: " + comment.getId();
-
+        return "Deleted comment:<br>" + comment;
     }
+
+    @RequestMapping("/find-root-comments-on/{id}")
+    @ResponseBody
+    public String findRootCommentsOnPicture(@PathVariable("id") long id){
+
+        List<Comment> comments = commentDao.findAllRootCommentsOn(id);
+        String returnString = new String();
+
+        for (Comment oneComment : comments) {
+            returnString += oneComment;
+        }
+
+        return returnString;
+    }
+
+    @RequestMapping("/find-children-of/{id}")
+    @ResponseBody
+    public String findChildrenOf(@PathVariable("id") long id){
+
+        List<Comment> comments =  commentDao.findAllChildCommentsOf(id);
+        String returnString = new String();
+        for (Comment oneComment : comments) {
+            returnString += oneComment;
+        }
+
+        return returnString;
+    }
+
+    @RequestMapping("/find-flagged")
+    @ResponseBody
+    public String findAllFlagged(){
+
+        List<Comment> comments =  commentDao.findAllFlaggedComments();
+        String returnString = new String();
+        for (Comment oneComment : comments) {
+            returnString += oneComment;
+        }
+
+        return returnString;
+    }
+    @RequestMapping("/find-by-user/{id}")
+    @ResponseBody
+    public String findAllUsersComments(@PathVariable("id") long id){
+
+        List<Comment> comments =  commentDao.findAllCommentsByUser(id);
+        String returnString = new String();
+        for (Comment oneComment : comments) {
+            returnString += oneComment;
+        }
+
+        return returnString;
+    }
+
 }

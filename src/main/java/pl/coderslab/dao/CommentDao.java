@@ -39,4 +39,35 @@ public class CommentDao {
         return comments;
     }
 
+    public List<Comment> findAllRootCommentsOn(Long pictureId){
+        Query query = entityManager.createQuery
+                ("SELECT c FROM Comment c WHERE picture_id = :pictureId AND parent_comment_id IS NULL");
+        query.setParameter("pictureId", pictureId);
+        List<Comment> comments = query.getResultList();
+        return comments;
+    }
+
+    public List<Comment> findAllChildCommentsOf(Long parentCommentId){
+        Query query = entityManager.createQuery
+                ("SELECT c FROM Comment c WHERE parent_comment_id = :parentCommentId");
+        query.setParameter("parentCommentId", parentCommentId);
+        List<Comment> childComments = query.getResultList();
+        return childComments;
+    }
+
+    public List<Comment> findAllFlaggedComments(){
+        Query query = entityManager.createQuery
+                ("SELECT c FROM Comment c WHERE flags > 0");
+        List<Comment> flaggedComments = query.getResultList();
+        return flaggedComments;
+    }
+
+    public List<Comment> findAllCommentsByUser(Long userId){
+        Query query = entityManager.createQuery
+                ("SELECT c FROM Comment c WHERE user_id = :userId");
+        query.setParameter("userId", userId);
+        List<Comment> usersComments = query.getResultList();
+        return usersComments;
+    }
+
 }
