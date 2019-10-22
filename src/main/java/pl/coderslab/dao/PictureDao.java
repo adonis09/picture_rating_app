@@ -2,6 +2,7 @@ package pl.coderslab.dao;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.entity.Mark;
 import pl.coderslab.entity.Picture;
 import pl.coderslab.entity.Tag;
 
@@ -79,6 +80,15 @@ public class PictureDao {
         List<Tag> allTagsOnPicture = query.getResultList();
         return allTagsOnPicture;
     }
+
+    public List<Mark> findAllMarksOn(Long pictureId) {
+        Query query = entityManager.createQuery("SELECT m FROM Mark m WHERE m.picture.id = :pictureId");
+        query.setParameter("pictureId", pictureId);
+        List<Mark> allMarksOnPicture = query.getResultList();
+        return allMarksOnPicture;
+    }
+
+
 
     public Double calculateAvgScoreOf(Long pictureId) {
         Query query = entityManager.createQuery("SELECT AVG (m.score) FROM Mark m WHERE m.picture.id = :pictureId");

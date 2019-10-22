@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.PictureDao;
 import pl.coderslab.entity.Comment;
+import pl.coderslab.entity.Mark;
 import pl.coderslab.entity.Picture;
 import pl.coderslab.entity.Tag;
 
@@ -146,6 +147,18 @@ public class PictureController {
         String returnString = new String();
         for (Picture onePicture : pictures) {
             returnString += onePicture;
+        }
+        return returnString;
+    }
+
+    @RequestMapping("/find-all-marks-on/{id}")
+    @ResponseBody
+    public String findAllMarksOnPicture(@PathVariable("id") long id){
+
+        List<Mark> marks = pictureDao.findAllMarksOn(id);
+        String returnString = new String();
+        for (Mark oneMark : marks) {
+            returnString += oneMark;
         }
         return returnString;
     }
