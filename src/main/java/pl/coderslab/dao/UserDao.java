@@ -39,4 +39,10 @@ public class UserDao {
         return users;
     }
 
+    public List<User> findAllNonAdminUsers(){
+        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.admin = 0");
+        List<User> users = query.getResultList();
+        return users;
+    }
+    
 }
