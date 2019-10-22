@@ -56,6 +56,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "id=" + id + "score=" + score + "<br>";
+        return "id=" + id + ", score=" + score + "<br>";
     }
 }
