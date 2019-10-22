@@ -3,7 +3,6 @@ package pl.coderslab.dao;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.entity.Comment;
-import pl.coderslab.entity.Picture;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,7 +40,7 @@ public class CommentDao {
 
     public List<Comment> findAllRootCommentsOn(Long pictureId){
         Query query = entityManager.createQuery
-                ("SELECT c FROM Comment c WHERE picture_id = :pictureId AND parent_comment_id IS NULL");
+                ("SELECT c FROM Comment c WHERE c.picture.id = :pictureId AND c.parentComment.id IS NULL");
         query.setParameter("pictureId", pictureId);
         List<Comment> comments = query.getResultList();
         return comments;
@@ -49,7 +48,7 @@ public class CommentDao {
 
     public List<Comment> findAllChildCommentsOf(Long parentCommentId){
         Query query = entityManager.createQuery
-                ("SELECT c FROM Comment c WHERE parent_comment_id = :parentCommentId");
+                ("SELECT c FROM Comment c WHERE c.parentComment.id = :parentCommentId");
         query.setParameter("parentCommentId", parentCommentId);
         List<Comment> childComments = query.getResultList();
         return childComments;
@@ -57,14 +56,14 @@ public class CommentDao {
 
     public List<Comment> findAllFlaggedComments(){
         Query query = entityManager.createQuery
-                ("SELECT c FROM Comment c WHERE flags > 0");
+                ("SELECT c FROM Comment c WHERE c.flags > 0");
         List<Comment> flaggedComments = query.getResultList();
         return flaggedComments;
     }
 
     public List<Comment> findAllCommentsByUser(Long userId){
         Query query = entityManager.createQuery
-                ("SELECT c FROM Comment c WHERE user_id = :userId");
+                ("SELECT c FROM Comment c WHERE c.user.id = :userId");
         query.setParameter("userId", userId);
         List<Comment> usersComments = query.getResultList();
         return usersComments;
