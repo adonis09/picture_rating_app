@@ -17,8 +17,8 @@ public class Tag {
 
     @ManyToMany
     @JoinTable(name = "picture_tag",
-    joinColumns = @JoinColumn(name = "picture_id"),
-    inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    joinColumns = @JoinColumn(name = "tag_id"),
+    inverseJoinColumns = @JoinColumn(name = "picture_id"))
     private List<Picture> pictures = new ArrayList<>();
 
     public Tag() {
