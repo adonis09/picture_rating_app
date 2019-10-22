@@ -16,6 +16,8 @@ public class Picture {
     @Column(unique = true)
     private String filename;
 
+    private String description;
+
     private LocalDateTime created;
 
     private LocalDateTime approved;
@@ -61,6 +63,14 @@ public class Picture {
 
     public void setFileName(String filename) {
         this.filename = filename;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getCreated() {
@@ -113,6 +123,6 @@ public class Picture {
 
     @Override
     public String toString() {
-        return "id=" + id + ", filename=" + filename + ", created=" + created + ", approved=" + approved + ", valid=" + valid + "<br>";
+        return "id=" + id + ", filename=" + filename + ", description=" + description + ", created=" + created + ", approved=" + approved + ", valid=" + valid + "<br>";
     }
 }

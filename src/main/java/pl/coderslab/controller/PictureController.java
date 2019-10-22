@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.PictureDao;
-import pl.coderslab.entity.Comment;
 import pl.coderslab.entity.Mark;
 import pl.coderslab.entity.Picture;
 import pl.coderslab.entity.Tag;
