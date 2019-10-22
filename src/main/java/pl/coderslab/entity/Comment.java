@@ -103,7 +103,7 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "id=" + id + ", content='" + content + ", created=" + created + ", flags=" + flags + "<br>";
+        return "id=" + id + ", content=" + content + ", created=" + created + ", flags=" + flags + "<br>";
 
     }
 }
