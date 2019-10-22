@@ -110,4 +110,9 @@ public class Picture {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", filename=" + filename + ", created=" + created + ", approved=" + approved + ", valid=" + valid + "<br>";
+    }
 }

@@ -47,4 +47,9 @@ public class Tag {
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", title='" + title;
+    }
 }

@@ -94,4 +94,9 @@ public class User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", name='" + name + ", email='" + email + ", admin=" + admin + ", active=" + active;
+    }
 }

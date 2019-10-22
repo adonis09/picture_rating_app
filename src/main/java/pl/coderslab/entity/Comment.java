@@ -100,5 +100,11 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", content='" + content + ", created=" + created + ", flags=" + flags + "<br>";
+
+    }
 }
 

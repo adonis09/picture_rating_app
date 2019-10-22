@@ -53,4 +53,9 @@ public class Mark {
     public void setPicture(Picture picture) {
         this.picture = picture;
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + "score=" + score + "<br>";
+    }
 }
