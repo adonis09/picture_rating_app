@@ -10,5 +10,10 @@
 <a href="/login">login</a>
 <a href="/user/register">register</a>
 
+<hr>
+
+<a href="/tag/showall">tags</a>
+<a href="/user/showall">users</a>
+
 </body>
 </html>
