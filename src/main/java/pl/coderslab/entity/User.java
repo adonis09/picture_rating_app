@@ -1,5 +1,7 @@
 package pl.coderslab.entity;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,12 @@ public class User {
     private List<Comment> comments = new ArrayList<>();
 
     public User() {
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public Long getId() {
