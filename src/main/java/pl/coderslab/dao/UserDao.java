@@ -1,5 +1,6 @@
 package pl.coderslab.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.entity.User;
@@ -44,5 +45,17 @@ public class UserDao {
         List<User> users = query.getResultList();
         return users;
     }
-    
+
+    public User checkUser(String nameToCheck, String passwordToCheck){
+        List<User> users = findAll();
+        UserDao userDao = new UserDao();
+        for(User oneUser : users){
+            if(oneUser.getName().equals(nameToCheck)){
+                if(BCrypt.checkpw(passwordToCheck, oneUser.getPassword())){
+                    return userDao.findById(oneUser.getId());
+                }
+            }
+        }
+        return null;
+    }
 }
