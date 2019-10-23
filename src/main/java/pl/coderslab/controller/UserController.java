@@ -3,9 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.entity.User;
 
@@ -18,17 +16,18 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping("/add")
-    @ResponseBody
-    public String addUser() {
-        User user = new User();
-        user.setName("newerUserName");
-        user.setEmail("newerUser@ema.il");
-        user.setPassword("newerPass");
-        user.setAdmin(0);
-        user.setActive(1);
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String addUserForm(Model model) {
+
+        model.addAttribute("user", new User());
+        return "form/adduserform";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String addUserProcess(@ModelAttribute User user) {
+
         userDao.saveUser(user);
-        return "Added user:<br>" + user.getId() + " | " + user.getName() + " | " + user.getEmail();
+        return "redirect:/login";
     }
 
     @RequestMapping("/find/{id}")
@@ -36,7 +35,6 @@ public class UserController {
     public String findUser(@PathVariable("id") long id) {
 
         User user = userDao.findById(id);
-
         return "Found user:<br>" + user.getId() + " | " + user.getName() + " | " + user.getEmail();
     }
 
@@ -61,7 +59,6 @@ public class UserController {
         userDao.delete(user);
 
         return "Deleted user having id: " + user.getId();
-
     }
 
     @RequestMapping("/findAll")
