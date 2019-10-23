@@ -27,8 +27,17 @@ public class UserController {
     public String addUserProcess(@ModelAttribute User user) {
 
         userDao.saveUser(user);
-        return "redirect:/login";
+        return "redirect:showall";
     }
+
+    @RequestMapping(value = "/showall", method = RequestMethod.GET)
+    public String display(Model model) {
+
+        List<User> allusers = userDao.findAll();
+        model.addAttribute("users", allusers);
+        return "allusers";
+    }
+
 
     @RequestMapping("/find/{id}")
     @ResponseBody
