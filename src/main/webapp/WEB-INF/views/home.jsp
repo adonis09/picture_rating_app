@@ -14,6 +14,7 @@
 
 <a href="/tag/showall">tags</a>
 <a href="/user/showall">users</a>
+<a href="/picture/showall">pictures</a>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 <a href="/">home page</a>
 
-<h4>all tags</h4>
+<h3>all tags</h3>
 
 <table>
 
