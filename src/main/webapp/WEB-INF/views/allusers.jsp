@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<a href="/">home page</a>
+
+<h4>all users</h4>
+
 <table>
 
 <c:forEach var="oneUser" items="${users}">

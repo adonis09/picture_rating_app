@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<a href="/">home page</a>
+
 <h4>all tags</h4>
 
 <table>
