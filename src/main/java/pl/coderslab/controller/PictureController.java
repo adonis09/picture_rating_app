@@ -2,8 +2,10 @@ package pl.coderslab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.PictureDao;
 import pl.coderslab.entity.Mark;
@@ -22,10 +24,19 @@ public class PictureController {
     @RequestMapping("/add")
     @ResponseBody
     public String addPicture() {
+
         Picture picture = new Picture();
         picture.setFileName("someFileName.jpg");
         pictureDao.savePicture(picture);
         return "Added picture:<br>" + picture.getId() + " | " + picture.getFileName();
+    }
+
+    @RequestMapping(value = "/showall", method = RequestMethod.GET)
+    public String showAll(Model model) {
+
+        List<Picture> allpictures = pictureDao.findAll();
+        model.addAttribute("pictures", allpictures);
+        return "allpictures";
     }
 
     @RequestMapping("/find/{id}")
